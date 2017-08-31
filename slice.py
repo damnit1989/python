@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*- 
+#list，tuple，str切片实例
 
 ' a slice module '
 
