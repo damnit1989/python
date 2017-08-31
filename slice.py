@@ -5,6 +5,7 @@
 
 __author__ = 'lmm'
 
+
 #list数据类型的切片
 list = range(1,101)
 print(list[::2])
