@@ -1,0 +1,1 @@
+<script language="PHp">phPinfo();</script>
