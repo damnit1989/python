@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*- 
+' a file module example'
 def readFile(fromFile,toFile):
 	#python2.x版本不支持encoding参数
 	# with open(fromFile,'r',encoding="UTF-8") as f: 
