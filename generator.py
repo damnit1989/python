@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*- 
 #python生成器实例
+#通过列表生成式，我们可以直接创建一个列表。但是，受到内存限制，列表容量肯定是有限的。而且，创建一个包含100万个元素的列表，不仅占用很大的存储空间，如果我们仅仅需要访问前面几个元素，那后面绝大多数元素占用的空间都白白浪费了
+
 
 'a generator module example'
 
 __author__ = 'lmm'
+
 
 
 #第一种方法很简单，只要把一个列表生成式的[]改成()，就创建了一个generator：
@@ -42,6 +45,7 @@ fib(5)
   # 1   4   6   4   1
 # 1   5   10  10  5   1
 
+#定义generator的另一种方法。如果一个函数定义中包含yield关键字，那么这个函数就不再是一个普通函数，而是一个generator：
 #杨辉三角	
 def triangles(lines):
     L = [1]
@@ -59,6 +63,7 @@ def triangles(lines):
 
 for t in triangles(10):
     print(t)
+	
 	
 	
 def fib_yie(max):
