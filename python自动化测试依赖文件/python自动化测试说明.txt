@@ -1,0 +1,8 @@
+python自动化测试
+
+
+需要将geckodriver.exe,chromedriver.exe 加入到系统变量PATH
+
+
+splinter文档地址
+https://splinter.readthedocs.io/en/latest/
