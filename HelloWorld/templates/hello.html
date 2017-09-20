@@ -1,0 +1,10 @@
+{% include "head.html" %}
+<h1>{{hello}}</h1>
+<h1>{{name}}</h1>
+
+<ul>
+{% for athlete in athlete_list %}
+    <li>{{ athlete }}</li>
+{% endfor %}
+</ul>
+{% include "foot.html" %}
