@@ -26,7 +26,7 @@ SECRET_KEY = '2+m0af$(*$oql#1$$4*dzq+e-0h)@^po%#%o(#s1d6rv23if9t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.201.100']
+ALLOWED_HOSTS = []
 
 
 # Application definition
