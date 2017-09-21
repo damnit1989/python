@@ -26,7 +26,8 @@ SECRET_KEY = '2+m0af$(*$oql#1$$4*dzq+e-0h)@^po%#%o(#s1d6rv23if9t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['192.168.201.100']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -76,23 +77,23 @@ WSGI_APPLICATION = 'HelloWorld.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # DATABASES = {
     # 'default': {
-        # 'ENGINE': 'django.db.backends.mysql',  # 或者使用 mysql.connector.django
-        # 'NAME': 'lmm',
-        # 'USER': 'root',
-        # 'PASSWORD': '123456',
-        # 'HOST':'localhost',
-        # 'PORT':'3306',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # 或者使用 mysql.connector.django
+        'NAME': 'lmm',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
+    }
+}
 
 
 # Password validation
@@ -132,3 +133,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#静态文件目录
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
