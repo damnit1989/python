@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^search_get',search.search_get),
     url(r'^search_post',search.search_post),
     url(r'^testdb$', testdb.testdb),    
+    url(r'^pdf$', view.out_pdf),    
 ]
