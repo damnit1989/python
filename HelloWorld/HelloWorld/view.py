@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #from django.http import HttpResponse
 from django.shortcuts import render
-from TestModel.models import Test
+from TestModel.models import Test,article
 
 #import pdf lib
 from reportlab.pdfgen import canvas
@@ -14,8 +14,13 @@ def hello(request):
     context['name'] = 'lmm'
 
     context['athlete_list'] = ['one','two','three']
-    sql_data = Test.objects.filter(name='runoob')
-    context['sql_data'] = sql_data
+    # sql_data = Test.objects.filter(name='runoob')
+    all_sql_data = Test.objects.all()    
+    context['sql_data'] = all_sql_data
+    # article1 = article()
+    context['article_list'] = article.objects.all()
+    # album_data = Test.objects.filter(title = '4455')
+    # context['album_data'] = album_data
     return render(request,'hello.html',context)
     # return HttpResponse('Hello World how are you!')
     
