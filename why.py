@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*- 
 
 __author__ = 'lmm'
+
+
 def show():
     print 'wow~'
 
