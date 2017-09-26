@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # 装饰器
+# 编写高阶函数，就是让函数的参数能够接收别的函数
 
 
 'a decorator module example for test'
