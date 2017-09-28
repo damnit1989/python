@@ -2,7 +2,7 @@
  
 from django.http import HttpResponse
  
-from TestModel.models import Test,article
+from .models import Test,article
  
 # 数据库操作
 def testdb(request):

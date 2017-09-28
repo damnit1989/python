@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #from django.http import HttpResponse
 from django.shortcuts import render
-from TestModel.models import Test,article
+from .models import Test,article
 
 #import pdf lib
 from reportlab.pdfgen import canvas
