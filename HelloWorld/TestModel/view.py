@@ -8,6 +8,10 @@ from reportlab.pdfgen import canvas
 from django.http import HttpResponse
 
 
+def index(request):
+    return HttpResponse('首页!') 
+
+    
 def hello(request):
     context = {}
     context['hello'] = 'Hello,World !'
