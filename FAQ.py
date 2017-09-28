@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#python常见问题
+#python常见问题汇总
 
 'a  faq module example'
 

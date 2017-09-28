@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="{% static 'css/common.css' %}">
+	<!--<link rel="stylesheet" href="/static/css/common.css'">-->	
+</head>
+
+<body>
+	{% include "head.html" %}
+	<h1>{{hello}}</h1>
+	<h1>{{name}}</h1>
+
+	<ul>
+	{% for athlete in athlete_list %}
+		<li>{{ athlete }}</li>
+	{% endfor %}
+	</ul>
+	{% include "foot.html" %}
+
+	<h1>从数据库查询数据</h1>
+	{%for data in sql_data%}
+		<div>
+			<p>published: {{ data.id }}</p>
+			<h1><a href="">{{ data.name }}</a></h1>
+
+		</div>
+	{%endfor%}
+	
+	<h1>从数据库查询数据</h1>
+	{%for article in article_list%}
+		<div>
+			<p>published: {{ article.id }}</p>
+			<h1><a href="">{{ article.title }}</a></h1>
+			<p><a href="">{{ article.text }}</a></p>
+			<p>{{ article.create_date }}</p>
+			<p>{{ article.publish_date }}</p>
+
+		</div>
+	{%endfor%}
+</body>
+</html>

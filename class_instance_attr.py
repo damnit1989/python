@@ -22,3 +22,6 @@ if __name__ == '__main__':
 	# del(person.name)
 	# print(person.name)
 	print(Person.name)
+	
+	print isinstance(person, Person)
+	print issubclass(Person, object)
