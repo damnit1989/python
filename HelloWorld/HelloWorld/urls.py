@@ -21,5 +21,5 @@ from . import view,search,testdb
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^hello/',include(''),
+    url(r'^hello/',include('view.urls'),
 ]
