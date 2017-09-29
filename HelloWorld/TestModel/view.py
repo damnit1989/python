@@ -51,7 +51,7 @@ def out_pdf(request):
     return response
 
 
-def get_name(requset):
+def get_name(request):
     if request.method == 'POST':
         form = NameForm(request.POST)
         if form.is_valid():
