@@ -17,7 +17,7 @@
 
 <body>
 	{% include "head.html" %}
-		<form action="/hello/get_name" method="post">
+		<form action="/hello/get_name/" method="post">
 			{% csrf_token %}
 			{{ form }}
 			<input type="submit" value="Submit" />
