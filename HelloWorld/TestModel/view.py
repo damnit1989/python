@@ -6,10 +6,11 @@ from .models import Test,article
 #import pdf lib
 from reportlab.pdfgen import canvas
 from django.http import HttpResponse
-
+from django.shortcuts import redirect
 
 def index(request):
-    return HttpResponse('首页!') 
+    return redirect('/hello/list/')
+    # return HttpResponse('首页!') 
 
     
 def hello(request):
