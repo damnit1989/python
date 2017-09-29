@@ -55,6 +55,9 @@ def get_name(request):
     if request.method == 'POST':
         form = NameForm(request.POST)
         if form.is_valid():
+            # name = request.POST['your_name']
+            T = Test(name = request.POST['your_name'])
+            T.save()
             return redirect('/hello/list/')
             # return HttpResponseRedirect('/hello/list/')
     else:
