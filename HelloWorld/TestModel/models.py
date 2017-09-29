@@ -19,10 +19,10 @@ class Album(models.Model):
     pass
 
 class article(models.Model):
-    title = models.CharField(max_length = 200)
-    text = models.TextField()
-    create_date = models.DateTimeField(default = timezone.now)
-    publish_date = models.DateTimeField(blank = True,null = True)
+    title = models.CharField(verbose_name = '标题', max_length = 200)
+    text = models.TextField(verbose_name = '内容')
+    create_date = models.DateTimeField(verbose_name = '创建时间', default = timezone.now)
+    publish_date = models.DateTimeField(verbose_name = '发布时间', blank = True,null = True)
     
     def publish(self):
         self.publish_date = timezone.now()
