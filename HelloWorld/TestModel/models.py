@@ -32,6 +32,7 @@ class article(models.Model):
     
     def getAllList(self):
         pass
+    
 
 
 if __name__ == '__main__':

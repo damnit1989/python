@@ -26,8 +26,12 @@ def hello(request):
     # sql_data = Test.objects.filter(name='runoob')
     all_sql_data = Test.objects.all()    
     context['sql_data'] = all_sql_data
-    # article1 = article()
-    context['article_list'] = article.objects.all().order_by('-create_date')
+
+    
+    #按照create_data降序排序，'-'表示降序，不加表示正序
+    # context['article_list'] = article.objects.all().order_by('-create_date')
+    context['article_list'] = article.objects.all()
+    
     # album_data = Test.objects.filter(title = '4455')
     # context['album_data'] = album_data
     return render(request,'hello.html',context)
