@@ -44,7 +44,7 @@ def add_article(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         text = request.POST.get('text')
-        art = articel(title = title,text = text)
+        art = article(title = title,text = text)
         art.save()
     return HttpResponseRedirect('/hello/list/')
 
