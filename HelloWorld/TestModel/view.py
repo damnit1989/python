@@ -7,6 +7,8 @@ from .models import Test,article
 from reportlab.pdfgen import canvas
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
+from .forms import NameForm
 
 
 def index(request):
@@ -47,4 +49,14 @@ def out_pdf(request):
     p.showPage()
     p.save()
     return response
-    
+
+
+def get_name(requset):
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+        if form.is_valid():
+            return redirect('/hello/list/')
+            # return HttpResponseRedirect('/hello/list/')
+        else:
+            form = NamForm()
+    return render(request,'form.html',{'form':form})
