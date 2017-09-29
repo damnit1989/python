@@ -17,24 +17,32 @@
 
 <body>
 	{% include "head.html" %}
+	
 	<h1>{{hello}}</h1>
 	<h1>{{name}}</h1>
-
-	<ul>
+	<form action="/hello/get_name/" method="post">
+		title:
+		<input type='text' name='title' />
+		body:
+		<textarea rows = 3 cols = 60 name = 'text'></textarea> 
+		<input type="submit" value="Submit" />
+	</form>
+	<br />
+	<hr />
+	<!--<ul>
 	{% for athlete in athlete_list %}
 		<li>{{ athlete }}</li>
 	{% endfor %}
-	</ul>
-	{% include "foot.html" %}
-
-	<h1>从数据库查询数据</h1>
+	</ul>-->
+	
+	<!--<h1>从数据库查询数据</h1>
 	{%for data in sql_data%}
 		<div>
 			<p>published: {{ data.id }}</p>
 			<h1><a href="">{{ data.name }}</a></h1>
 
 		</div>
-	{%endfor%}
+	{%endfor%}-->
 	
 	<h1>从数据库查询数据</h1>
 	{%for article in article_list%}
@@ -47,5 +55,7 @@
 
 		</div>
 	{%endfor%}
+	
+	{% include "foot.html" %}
 </body>
 </html>

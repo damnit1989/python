@@ -30,6 +30,8 @@ def hello(request):
     
     #按照create_data降序排序，'-'表示降序，不加表示正序
     # context['article_list'] = article.objects.all().order_by('-create_date')
+    
+    #获取5条记录
     context['article_list'] = article.objects.all()[:5]
     
     # album_data = Test.objects.filter(title = '4455')
@@ -37,6 +39,14 @@ def hello(request):
     return render(request,'hello.html',context)
     # return HttpResponse('Hello World how are you!')
 
+
+def add_article(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        text = request.POST.get('text')
+        art = articel(title = title,text = text)
+        art.save()
+    return HttpResponseRedirect('/hello/list/')
 
 def detail(request,id):
     context = {}
