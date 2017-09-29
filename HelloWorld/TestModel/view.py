@@ -30,7 +30,7 @@ def hello(request):
     
     #按照create_data降序排序，'-'表示降序，不加表示正序
     # context['article_list'] = article.objects.all().order_by('-create_date')
-    context['article_list'] = article.objects.all()
+    context['article_list'] = article.objects.all()[:5]
     
     # album_data = Test.objects.filter(title = '4455')
     # context['album_data'] = album_data

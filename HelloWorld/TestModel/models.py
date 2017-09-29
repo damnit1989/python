@@ -33,6 +33,8 @@ class article(models.Model):
     def getAllList(self):
         pass
     
+    class Meta:
+        ordering = ('-create_date',)
 
 
 if __name__ == '__main__':
