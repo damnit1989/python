@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^list/$',view.hello,name="list"),
     url(r'^(?P<id>[0-9]+)/$',view.detail,name="detail"),
     url(r'^form/$',view.get_name,name="form"),
+    url(r'^get_name/$',view.get_name,name="form"),
     # url(r'^hello/',view.hello),
     # url(r'^search_form/',search.search_form),
     # url(r'^search_get',search.search_get),
