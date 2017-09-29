@@ -55,7 +55,7 @@ def hello(request):
     # return HttpResponseRedirect('/hello/list/')
 
 def add_article_new(request):
-    if request.methodo == 'POST':
+    if request.method == 'POST':
         form = ArticleForm(request.POST)
         if form.is_valid():
             post = form.save(commit = False)
