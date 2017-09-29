@@ -33,7 +33,7 @@ def detail(request,id):
     context = {}
     detail = article.objects.filter(id = id)
     context['detail'] = detail
-    return render(request,'detail.html',content)
+    return render(request,'detail.html',context)
     
     
 def out_pdf(request):
