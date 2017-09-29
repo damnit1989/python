@@ -17,8 +17,8 @@ from .models import ArticleForm
 
 def index(request):
     # 重定向到另一个url
-    # return redirect('/hello/list/')
-    return HttpResponse('首页!') 
+    return redirect('/hello/list/')
+    # return HttpResponse('首页!') 
 
     
 def hello(request):
