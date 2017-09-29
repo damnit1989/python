@@ -27,7 +27,7 @@ def hello(request):
     all_sql_data = Test.objects.all()    
     context['sql_data'] = all_sql_data
     # article1 = article()
-    context['article_list'] = article.objects.all()
+    context['article_list'] = article.objects.all().order_by('-create_date')
     # album_data = Test.objects.filter(title = '4455')
     # context['album_data'] = album_data
     return render(request,'hello.html',context)
