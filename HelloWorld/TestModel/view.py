@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 #from django.http import HttpResponse
+
+from datetime import datetime
 from django.shortcuts import render
 from .models import Test,article
 
@@ -53,7 +55,14 @@ def hello(request):
     # return HttpResponseRedirect('/hello/list/')
 
 def add_article_new(requset):
-    pass
+    if request.methodo == 'POST':
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit = False)
+            post.create_date = datetime.now()
+            post.publish_date = datetime.now()
+            post.save()
+    return HttpResponseRedirect('/hello/list/')    
         
     
     

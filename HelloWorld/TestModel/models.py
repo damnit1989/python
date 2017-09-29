@@ -43,7 +43,7 @@ class article(models.Model):
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = article
-        exclude = ('create_date',)
+        exclude = ('create_date','publish_date')
         
     
 if __name__ == '__main__':
