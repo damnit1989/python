@@ -21,7 +21,8 @@
 	<!--<h1>{{hello}}</h1>
 	<h1>{{name}}</h1>-->
 	
-	<form action="/hello/add_article/" method="post">
+	<!--原始的form表单-->
+	<!--<form action="/hello/add_article_old/" method="post">
 		{% csrf_token %}
 		title:
 		<input type='text' name='title' />
@@ -30,7 +31,15 @@
 		<textarea rows = 3 cols = 60 name = 'text'></textarea>
 		<br />
 		<input type="submit" value="Submit" />
+	</form>-->
+	
+	<!--模型表单-->
+	<form action="/hello/add_article_new/" method="post">
+		{% csrf_token %}
+		<table>{{form}}</table>
+		<input type="submit" value="Submit" />
 	</form>
+	
 	<br />
 	<hr />
 	<!--<ul>

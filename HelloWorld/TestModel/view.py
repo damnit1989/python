@@ -8,7 +8,9 @@ from reportlab.pdfgen import canvas
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
+
 from .forms import NameForm
+from .models import ArticleForm
 
 
 def index(request):
@@ -36,18 +38,24 @@ def hello(request):
     
     # album_data = Test.objects.filter(title = '4455')
     # context['album_data'] = album_data
+    context['form'] = ArticleForm()
     return render(request,'hello.html',context)
     # return HttpResponse('Hello World how are you!')
 
 
-def add_article(request):
-    if request.method == 'POST':
-        title = request.POST.get('title')
-        text = request.POST.get('text')
-        art = article(title = title,text = text)
-        art.save()
-    return HttpResponseRedirect('/hello/list/')
+# 原始的form表单提交数据的方式
+# def add_article_old(request):
+    # if request.method == 'POST':
+        # title = request.POST.get('title')
+        # text = request.POST.get('text')
+        # art = article(title = title,text = text)
+        # art.save()
+    # return HttpResponseRedirect('/hello/list/')
 
+def add_article_new(requset):
+    pass
+        
+    
     
 def detail(request,id):
     context = {}

@@ -7,6 +7,8 @@ __author__ = 'lmm'
 from django.db import models
 from django.utils import timezone
 
+from django import forms
+
 # Create your models here.
 
 class Test(models.Model):
@@ -38,6 +40,11 @@ class article(models.Model):
         ordering = ('-create_date',)
 
 
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = article
+        
+    
 if __name__ == '__main__':
     pass
     
