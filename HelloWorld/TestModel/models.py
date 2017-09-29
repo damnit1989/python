@@ -32,7 +32,8 @@ class article(models.Model):
     
     def getAllList(self):
         pass
-    
+        
+    # 按照create_data降序排序，'-'表示降序，不加表示正序    
     class Meta:
         ordering = ('-create_date',)
 

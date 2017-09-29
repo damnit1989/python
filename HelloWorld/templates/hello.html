@@ -18,14 +18,17 @@
 <body>
 	{% include "head.html" %}
 	
-	<h1>{{hello}}</h1>
-	<h1>{{name}}</h1>
+	<!--<h1>{{hello}}</h1>
+	<h1>{{name}}</h1>-->
+	
 	<form action="/hello/add_article/" method="post">
 		{% csrf_token %}
 		title:
 		<input type='text' name='title' />
+		<br />
 		body:
-		<textarea rows = 3 cols = 60 name = 'text'></textarea> 
+		<textarea rows = 3 cols = 60 name = 'text'></textarea>
+		<br />
 		<input type="submit" value="Submit" />
 	</form>
 	<br />

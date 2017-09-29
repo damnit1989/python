@@ -48,6 +48,7 @@ def add_article(request):
         art.save()
     return HttpResponseRedirect('/hello/list/')
 
+    
 def detail(request,id):
     context = {}
     detail = article.objects.filter(id = id)
