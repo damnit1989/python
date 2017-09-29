@@ -57,6 +57,6 @@ def get_name(request):
         if form.is_valid():
             return redirect('/hello/list/')
             # return HttpResponseRedirect('/hello/list/')
-        else:
-            form = NamForm()
+    else:
+        form = NamForm()
     return render(request,'form.html',{'form':form})
