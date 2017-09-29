@@ -8,7 +8,9 @@ from reportlab.pdfgen import canvas
 from django.http import HttpResponse
 from django.shortcuts import redirect
 
+
 def index(request):
+    # 重定向到另一个url
     return redirect('/hello/list/')
     # return HttpResponse('首页!') 
 
