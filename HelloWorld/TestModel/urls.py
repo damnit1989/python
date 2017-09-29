@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^(?P<id>[0-9]+)/$',view.detail,name="detail"),
     url(r'^form/$',view.get_name,name="form"),
     url(r'^get_name/$',view.get_name,name="form"),
-    url(r'^add_article_old/$',view.add_article_old,name="add_article_old"),
+    # url(r'^add_article_old/$',view.add_article_old,name="add_article_old"),
     url(r'^add_article_new/$',view.add_article_new,name="add_article_new"),
     # url(r'^hello/',view.hello),
     # url(r'^search_form/',search.search_form),
