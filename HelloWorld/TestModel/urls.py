@@ -8,6 +8,7 @@ from . import view,search,testdb
 urlpatterns = [
 
     url(r'^$',view.hello,name="hello"),
+    url(r'^(?P<id>[0-9]+)/$',view.detail,name="detail"),
     # url(r'^hello/',view.hello),
     # url(r'^search_form/',search.search_form),
     # url(r'^search_get',search.search_get),

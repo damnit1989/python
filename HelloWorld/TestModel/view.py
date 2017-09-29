@@ -27,6 +27,14 @@ def hello(request):
     # context['album_data'] = album_data
     return render(request,'hello.html',context)
     # return HttpResponse('Hello World how are you!')
+
+
+def detail(request,id):
+    context = {}
+    detail = article.objects.filter(id = id)
+    context['detail'] = detail
+    return render(request,'detail.html,content)
+    
     
 def out_pdf(request):
     response = HttpResponse(content_type = 'application/pdf')
