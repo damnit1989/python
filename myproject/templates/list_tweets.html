@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
+    <!--<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="renderer" content="webkit">
@@ -16,7 +16,10 @@
 	<title>Pending and Published tweets</title>
 	<style type="text/css">
 		tr.evenrow{
-			background:#ffffff;
+			background:#FFFFFF;
+		}
+		tr.oddrow{
+			background:#DDDDDD
 		}
 	</style>
 </head>
@@ -50,7 +53,7 @@
 			</tr>
 			
 			{% for tweet in published_tweets %}
-			<tr>
+			<tr class = "{%cycle 'oddrow' 'evenrow'%}">
 				<td><a href="">{{tweet.text}}</a></td>
 				<td><a href="">{{tweet.published_at|timesince}} ago</a></td>
 			</tr>
