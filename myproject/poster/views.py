@@ -39,6 +39,7 @@ def post_tweet(request,tweet_id = None):
     return direct_to_template(request,'post_tweet.html',{'form':form})
     
 def send_review_email():
+    pass
     # subject = 'Action required:review tweet'
     # body = ('sfsdfsdf','sdfsdfsdf')
     # send_mail(subject,body,settings.DEFAULT_FROM_EMAIL,[settings.TWEET_APPROVER_EMAIL])
