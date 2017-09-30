@@ -19,4 +19,4 @@ def list_tweets(request):
     twees_list = {}
     twees_list['pending_tweets'] = Tweet.objects.filter(state = 'pending').order_by('created_at')
     twees_list['published_tweets'] = Tweet.objects.filter(state = 'published').order_by('-published_at')
-    return render(requset,'list_tweets.html',twees_list)
+    return render(request,'list_tweets.html',twees_list)
