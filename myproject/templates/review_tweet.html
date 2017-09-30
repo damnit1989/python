@@ -46,7 +46,7 @@
 		<b>History</b>
 		
 		{% for comment in comments %}
-			<i>{{comment.created_at|timsince}} ago:</i>
+			<i>{{comment.created_at|timesince}} ago:</i>
 			{{comment.text}}
 			<hr />
 		{%endfor%}
