@@ -35,7 +35,7 @@ class ReviewForm(forms.Form):
 def review_tweet(request,tweet_id):
     review_list = {}
     reviewed_tweet = get_object_or_404(Tweet,id = tweet_id)
-    if request.method = "POST":
+    if request.method == "POST":
         form = ReviewForm(request.POST)
         if form.is_valid():
             new_comment = form.cleaned_data['new_comment']
