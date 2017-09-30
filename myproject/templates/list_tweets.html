@@ -54,7 +54,7 @@
 			
 			{% for tweet in published_tweets %}
 			<tr class = "{%cycle 'oddrow' 'evenrow'%}">
-				<td><a href="">{{tweet.text}}</a></td>
+				<td><a href="/approve/review/{{tweet.id}}">{{tweet.text}}</a></td>
 				<td><a href="">{{tweet.published_at|timesince}} ago</a></td>
 			</tr>
 			{%endfor%}
