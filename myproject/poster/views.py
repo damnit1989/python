@@ -8,9 +8,10 @@ from django.forms import ModelForm
 from django.core.mail import send_mail
 from django.db.models import Count
 from django.http import HttpResponseRedirect
-from django.views.generic.simple import direct_to_template
+# from django.views.generic.simple import direct_to_template
 from myproject import settings
 from .models import Tweet
+
 
 # Create your views here.
 
@@ -36,7 +37,7 @@ def post_tweet(request,tweet_id = None):
             return HttpResponseRedirect('/post/thankyou')
     else:
         form = TweetForm(instance = tweet)
-    return direct_to_template(request,'post_tweet.html',{'form':form})
+    return render(request,'post_tweet.html',{'form':form})
     
 def send_review_email():
     pass
@@ -47,4 +48,4 @@ def send_review_email():
 
 def thankyou(request):
     tweets_in_queue = Tweet.objects.filter(state = 'pending').aggregate(Count(id)).values()[0]
-    return direct_to_template(request,'thankyou.html',{'tweets_in_queue':tweets_in_queue})
+    return render(request,'thankyou.html',{'tweets_in_queue':tweets_in_queue})
