@@ -23,7 +23,7 @@ def list_tweets(request):
     return render(request,'list_tweets.html',twees_list)
 
 
-def ReviewForm(forms.Form):
+class ReviewForm(forms.Form):
     new_comment = forms.CharField(max_length = 300,widget = forms.Textarea(attrs = {'cols':50,'rows':6}),required = False)
     APPROVAL_CHOICES = (
         ('approve','Approve this tweet and post it to Twitter'),
