@@ -36,8 +36,8 @@
 			</tr>
 			
 			{% for tweet in pending_tweets %}
-			<tr>
-				<td><a href="">{{tweet.text}}</a></td>
+			<tr class = "{%cycle 'oddrow' 'evenrow'%}">
+				<td><a href="/approve/review/{{tweet.id}}">{{tweet.text}}</a></td>
 				<td><a href="">{{tweet.created_at|timesince}} ago</a></td>
 			</tr>
 			{%endfor%}
