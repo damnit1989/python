@@ -6,5 +6,10 @@ from django.contrib import admin
 from .models import *
 # Register your models here.
 
-admin.site.register(Tweet)
+
+class TweetAdmin(admin.ModelAdmin):
+    #让对象显示字段
+    list_display = ('text','author_email','created_at','state')
+    
+admin.site.register(Tweet, TweetAdmin)
 admin.site.register(Comment)
