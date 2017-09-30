@@ -48,4 +48,4 @@ def send_review_email():
 
 def thankyou(request):
     tweets_in_queue = Tweet.objects.filter(state = 'pending').aggregate(count = Count(id)).values()[0]
-    return render(request,'thankyou.html',{'tweets_in_queue':tweets_in_queue})
+    return render(request,'thank_you.html',{'tweets_in_queue':tweets_in_queue})
