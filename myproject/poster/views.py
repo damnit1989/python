@@ -47,4 +47,4 @@ def send_review_email():
 
 def thankyou(request):
     tweets_in_queue = Tweet.objects.filter(state = 'pending').aggregate(Count(id)).values()[0]
-    return direct_to_template(request,'thankyou.html',{'tweets_in_queue':tweets_in_queue)
+    return direct_to_template(request,'thankyou.html',{'tweets_in_queue':tweets_in_queue})
