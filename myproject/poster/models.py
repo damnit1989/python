@@ -15,7 +15,7 @@ class Tweet(models.Model):
         ('published', 'published'),
         ('rejected', 'rejected'),
     )
-    state = models.CharField(verbose_name = '状态',choices = STATE_CHOICES)
+    state = models.CharField(verbose_name = '状态', max_length = 15, choices = STATE_CHOICES)
     
     def __unicode__(self):
         return self.text
