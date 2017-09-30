@@ -29,7 +29,7 @@ class ReviewForm(forms.Form):
         ('approve','Approve this tweet and post it to Twitter'),
         ('reject','Reject this tweet and send it back to the author'),
     )
-    approval =  models.ChoiceField(choices = APPROVAL_CHOICES, widget = forms.RadioSelect)
+    approval =  forms.ChoiceField(choices = APPROVAL_CHOICES, widget = forms.RadioSelect)
     
     
 def review_tweet(request,tweet_id):
