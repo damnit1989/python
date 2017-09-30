@@ -17,8 +17,14 @@ from django.conf.urls import url
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^login/', 'django.contrib.auth.views.login',{'template_name':'login.html'}),
-    url(r'^logout/', 'django.contrib.auth.views.logout'),
+# urlpatterns = [
+    # url(r'^admin/', admin.site.urls),
+    # url(r'^login/', 'django.contrib.auth.views.login',{'template_name':'login.html'}),
+    # url(r'^logout/', 'django.contrib.auth.views.logout'),
+# ]
+
+urlpatterns = partterns('',
+    (r'^admin/', admin.site.urls),
+    (r'^login/', 'django.contrib.auth.views.login',{'template_name':'login.html'}),
+    (r'^logout/', 'django.contrib.auth.views.logout'),
 ]
