@@ -17,17 +17,12 @@
 
 <body>
 	{% include "head.html" %}
-
-
-	<ul>
-	{% for d in detail %}
-		<li>{{ d.id }}</li>
-		<li>{{ d.title }}</li>
-		<li>{{ d.create_date }}</li>
-		<li>{{ d.publish_date }}</li>
-	{% endfor %}
-	</ul>
+	
+		<form action = "" method="post">
+			{% csrf_token %}
+			<table>{{form}}</table>
+			<input type="submit" value="Submit" />
+		</form>
 	{% include "foot.html" %}
-
 </body>
 </html>
