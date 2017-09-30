@@ -1,4 +1,5 @@
 创建数据表命令
+	python manage.py makemigrations
 	python manage.py migrate
 
 创建超级用户用户登录127.0.0.1:8000/admin
