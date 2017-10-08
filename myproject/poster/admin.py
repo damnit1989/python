@@ -16,4 +16,4 @@ admin.site.register(Tweet, TweetAdmin)
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('id','text','created_at')
-admin.site.register(Comment)
+admin.site.register(Comment,CommentAdmin)
