@@ -33,3 +33,10 @@ class Comment(models.Model):
     
     def __unicode__(self):
         return self.text
+
+class User(models.Model):
+    username = models.CharField(verbose_name = '用户名', max_length = 20)
+    password = models.CharField(verbose_name = '密码', max_length = 10)
+    def __unicode__(self):
+        return self.username
+    
