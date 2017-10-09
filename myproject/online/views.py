@@ -20,7 +20,8 @@ class UserForm(forms.ModelForm):
 
 # 首页        
 def index(request):
-    username = request.COOKIES.get('username','')
+    # username = request.COOKIES.get('username','')
+    username = request.session.get('username','')
     if username:
         return render(request,'index.html',{'username':username})    
         # return HttpResponse('首页登录成功!'+username)
@@ -61,7 +62,9 @@ def login(request):
                     if check_password(password,userInfo.password):
                         response = HttpResponseRedirect('/online/index/')
                         # 设置cookie
-                        response.set_cookie('username',username,3600)
+                        # response.set_cookie('username',username,3600)
+                        # 设置session
+                        request.session['username'] = username                        
                         return response
                 else:
                     return HttpResponseRedirect('/online/login/')
@@ -80,4 +83,6 @@ def logout(request):
     response = HttpResponseRedirect('/online/index/')
     # 删除cookie
     response.delete_cookie('username')
+    # 删除session
+    del request.session['username']
     return response    
