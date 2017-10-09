@@ -41,7 +41,8 @@ def regist(request):
             password = uf.cleaned_data['password']
             new_password = make_password(password)            
             User.objects.create(username = username,password = new_password)
-            return HttpResponse('regist success!!')
+            str = '<a href="http://192.168.17.134:8000/online/login/">登录</a>'
+            return HttpResponse('regist success!!' + str)
     else:
         uf = UserForm()
     return render(request,'regist.html',{'form':uf})
