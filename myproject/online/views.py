@@ -10,6 +10,8 @@ from django.template import RequestContext
 # django内置加密, 以及验证
 from django.contrib.auth.hashers import make_password, check_password
 from poster.models import User
+import json
+
 # Create your views here.
 
 
@@ -74,8 +76,14 @@ def login(request):
                 else:
                     return HttpResponseRedirect('/online/login/')
             except Exception, e:
+                L = {}
+                L['status'] = 0
+                L['info'] = '发生异常'
+                L['data'] = ''
+                json_str = json.dumps(L)
                 # return HttpResponse(e)# 打印异常信息
-                return HttpResponseRedirect('/online/login/')
+                return HttpResponse(json_str, content_type="application/json")
+                # return HttpResponseRedirect('/online/login/')
     else:
         uf = UserForm()
     return render(request,'login.html',{'form':uf})
