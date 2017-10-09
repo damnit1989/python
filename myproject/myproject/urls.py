@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^post/',include('poster.urls')),
     url(r'^$',include('poster.urls')),
     url(r'^approve/',include('approver.urls')),    
+    url(r'^online/',include('online.urls')),    
     # url(r'^login', django.contrib.auth.views.login,{'template_name':'login.html'}),
     # url(r'^logout', django.contrib.auth.views.logout),
 ]

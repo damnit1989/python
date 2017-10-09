@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'poster',
     'approver',
+    'online',
 ]
 
 MIDDLEWARE = [
