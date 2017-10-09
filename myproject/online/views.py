@@ -20,7 +20,10 @@ class UserForm(forms.ModelForm):
 
 # 首页        
 def index(request):
+    # 读取cookie的值
     # username = request.COOKIES.get('username','')
+    
+    # 读取session的值
     username = request.session.get('username','')
     if username:
         return render(request,'index.html',{'username':username})    
@@ -63,6 +66,7 @@ def login(request):
                         response = HttpResponseRedirect('/online/index/')
                         # 设置cookie
                         # response.set_cookie('username',username,3600)
+                        
                         # 设置session
                         request.session['username'] = username                        
                         return response
