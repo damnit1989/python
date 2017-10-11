@@ -4,3 +4,17 @@
 
 创建超级用户用户登录127.0.0.1:8000/admin
 	python manage.py createsuperuser
+
+
+	
+	
+django 模型操作	
+
+	filter() 始终给你一个查询集，即使只有一个对象满足查询条件 —— 这种情况下，查询集将只包含一个元素。
+	
+		eg:Entry.objects.all().filter(pub_date__year=2006)
+		
+		
+	如果你知道只有一个对象满足你的查询，你可以使用管理器的get() 方法，它直接返回该对象：
+		
+		eg: one_entry = Entry.objects.get(pk=1)

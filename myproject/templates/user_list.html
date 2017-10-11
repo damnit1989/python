@@ -29,18 +29,32 @@
 	
 		<table>
 			<tr>
-				<td colspan=3 align=center><b>Pending tweets</b></td>
+				<td colspan=3 align=center><b>用户列表</b></td>
 			</tr>
 			<tr>
-				<td>id</td><td>用户名</td><td>密码</td><td>操作</td>
+				<td>id</td>
+				<td>用户名</td>
+				<td>密码</td>
+				<td>头像</td>
+				<td>操作</td>
 			</tr>
 			
 			{% for user in contacts %}
 			<tr class = "{%cycle 'oddrow' 'evenrow'%}">
-				<td><a href="/approve/review/{{user.id}}">{{user.id}}</a></td>
-				<td><a href="">{{user.username}}</a></td>
-				<td><a href="">{{user.password}}</a></td>
-				<td><a href="">mod/del</a></td>
+				<td>{{user.id}}</td>
+				<td>{{user.username}}</td>
+				<td>{{user.password}}</td>
+				<td>
+					{%if user.headImg %}
+						<img src="/media/{{user.headImg}}" width="50px" height="50px" />
+					{%else%}
+						<img src="/media/upload/default.jpg" width="50px" height="50px" />
+					{%endif%}
+				</td>
+				<td>
+					<a href="/online/edit/{{user.id}}">修改</a>&nbsp;&nbsp;&nbsp;
+					<a href="/online/del/{{user.id}}">删除</a>
+				</td>
 			</tr>
 			{%endfor%}
 		</table>

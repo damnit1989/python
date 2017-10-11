@@ -12,6 +12,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from poster.models import User
 import json
 
+# 分页
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
@@ -28,6 +29,12 @@ class UserLoginForm(forms.ModelForm):
         model = User
         fields = ('username','password')
         
+# 修改用户信息的表单
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username',) 
+
         
 # 首页        
 def index(request):
@@ -54,7 +61,7 @@ def user_list(request):
     # 分页显示
     # user_list = User.objects.all()    
     contact_list = User.objects.all()
-    paginator = Paginator(contact_list, 2) # Show 25 contacts per page
+    paginator = Paginator(contact_list, 3) # Show 25 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -68,6 +75,25 @@ def user_list(request):
     # 返回信息        
     return render_to_response('user_list.html', {"contacts": contacts})
     # return render(request,'user_list.html',{'user_list':user_list})
+
+    
+# 修改
+def edit(request,user_id = None):
+    userInfo = User.objects.get(id = user_id) 
+    if request.method == "POST":
+        form = UserEditForm(request.POST,instance = userInfo)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/online/user_list/')            
+    else:
+        uf = UserEditForm(instance = userInfo)
+        return render(request,'edit.html',{'form':uf})
+        
+# 删除        
+def delete(request,user_id = None):
+    if user_id:
+        User.objects.filter(id = user_id).delete()
+    return HttpResponseRedirect('/online/user_list/')
 
     
 # 注册
