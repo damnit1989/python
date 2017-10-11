@@ -20,5 +20,5 @@ admin.site.register(Comment,CommentAdmin)
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('id','username','password')
+    list_display = ('id','username','password','headImg')
 admin.site.register(User,UserAdmin)

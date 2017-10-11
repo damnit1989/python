@@ -18,6 +18,9 @@ from django.conf.urls import url, include
 from django.contrib import admin
 # admin.autodiscover()
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^post/',include('poster.urls')),
@@ -26,7 +29,7 @@ urlpatterns = [
     url(r'^online/',include('online.urls')),    
     # url(r'^login', django.contrib.auth.views.login,{'template_name':'login.html'}),
     # url(r'^logout', django.contrib.auth.views.logout),
-]
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 
 # urlpatterns = patterns('',
     # (r'^admin/', admin.site.urls),

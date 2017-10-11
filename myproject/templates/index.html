@@ -17,12 +17,19 @@
 </head>
 
 <body>
-	{% include "head.html" %}
-	
-		<h1>你好 {{username}} !</h1>
-		
-	{% include "foot.html" %}
-	<hr />
-	<a href="http://192.168.17.134:8000/online/logout/">登出</a>	
+	<center>
+		{% include "head.html" %}
+		<hr />
+			<h1>你好 {{username}} !</h1>
+			{%if info.headImg %}
+				<img src="/media/{{info.headImg}}" width="200px" height="200px" />
+			{%else%}
+				<img src="/media/upload/default.jpg" width="200px" height="200px" />
+			{%endif%}
+		<hr />	
+		{% include "foot.html" %}
+		<hr />
+		<a href="/online/logout/">登出</a>	
+	</center>
 </body>
 </html>

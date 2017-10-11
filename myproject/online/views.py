@@ -14,35 +14,48 @@ import json
 
 # Create your views here.
 
-
+#用于注册的form表单
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('username','password')
+        fields = ('username','password','headImg')
 
+# 用户登录的form表单，不包含头像
+class UserLoginForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username','password')
+        
+        
 # 首页        
 def index(request):
     # 读取cookie的值
     # username = request.COOKIES.get('username','')
     
     # 读取session的值
-    username = request.session.get('username','')
-    if username:
-        return render(request,'index.html',{'username':username})    
-        # return HttpResponse('首页登录成功!'+username)
-    else:
-        return HttpResponseRedirect('/online/login/')        
+    try:
+        username = request.session.get('username','')
+        userInfo = User.objects.get(username__exact = username)
+        if username and userInfo:
+            return render(request,'index.html',{'username':username,'info':userInfo})    
+            # return HttpResponse('首页登录成功!'+username)
+        else:
+            return HttpResponseRedirect('/online/login/')
+    except Exception, e:
+        # return HttpResponse(e)
+        return HttpResponseRedirect('/online/login/')
 
 
 # 注册
 def regist(request):
     if request.method == 'POST':
-        uf = UserForm(request.POST)
+        uf = UserForm(request.POST,request.FILES)
         if uf.is_valid():
             username = uf.cleaned_data['username']
             password = uf.cleaned_data['password']
+            headImg = uf.cleaned_data['headImg']
             new_password = make_password(password)            
-            User.objects.create(username = username,password = new_password)
+            User.objects.create(username = username,password = new_password,headImg = headImg)
             str = '<a href="http://192.168.17.134:8000/online/login/">登录</a>'
             return HttpResponse('regist success!!' + str)
     else:
@@ -53,7 +66,7 @@ def regist(request):
 # 登录
 def login(request):
     if request.method == 'POST':
-        uf = UserForm(request.POST)
+        uf = UserLoginForm(request.POST)
         if uf.is_valid():
             username = uf.cleaned_data['username']
             password = uf.cleaned_data['password']
@@ -85,7 +98,7 @@ def login(request):
                 return HttpResponse(json_str, content_type="application/json")
                 # return HttpResponseRedirect('/online/login/')
     else:
-        uf = UserForm()
+        uf = UserLoginForm()
     return render(request,'login.html',{'form':uf})
     # return render_to_response('login.html',{'uf':uf},context_instance=RequestContext(request))
     
