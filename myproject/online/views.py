@@ -12,6 +12,8 @@ from django.contrib.auth.hashers import make_password, check_password
 from poster.models import User
 import json
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 # Create your views here.
 
 #用于注册的form表单
@@ -46,6 +48,28 @@ def index(request):
         return HttpResponseRedirect('/online/login/')
 
 
+def user_list(request):
+    # 查询所有的用户
+
+    # 分页显示
+    # user_list = User.objects.all()    
+    contact_list = User.objects.all()
+    paginator = Paginator(contact_list, 2) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        contacts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        contacts = paginator.page(paginator.num_pages)  
+    # 返回信息        
+    return render_to_response('user_list.html', {"contacts": contacts})
+    # return render(request,'user_list.html',{'user_list':user_list})
+
+    
 # 注册
 def regist(request):
     if request.method == 'POST':
