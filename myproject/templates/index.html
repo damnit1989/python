@@ -29,8 +29,10 @@
 		<hr />	
 		{% include "foot.html" %}
 		<hr />
-		<a href="/online/logout/">登出</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/online/user_list/">列表</a>	
+		<!--<a href="/online/logout/">登出</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/online/user_list/">列表</a>-->
+		<a href="{% url 'logout_url' %}">登出</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="{% url 'user_list_url' %}">列表</a>
 	</center>
 </body>
 </html>
