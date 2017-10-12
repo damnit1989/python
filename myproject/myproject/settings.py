@@ -24,7 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'c8ehh6_0(2ilh_4)xo%-$!kh^58fs#wvd=%m(jkvzf%a84zg4v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
+# DEBUG为False才会显示404页面
+# DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 

@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect,HttpResponseNotFound,Http404
 from django import forms
 from django.forms import ModelForm
 from django.template import RequestContext
@@ -79,7 +79,12 @@ def user_list(request):
     
 # 修改
 def edit(request,user_id = None):
-    userInfo = User.objects.get(id = user_id) 
+    try:
+        userInfo = User.objects.get(id = user_id)
+    except Exception, e:
+        # 抛出404
+        raise Http404("not find this userinfo")
+        # return HttpResponseNotFound('not find this userinfo')
     if request.method == "POST":
         form = UserEditForm(request.POST,instance = userInfo)
         if form.is_valid():
