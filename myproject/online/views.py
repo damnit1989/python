@@ -15,6 +15,9 @@ import json
 # 分页
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+# 类视图
+from django.views.generic import ListView,DetailView,TemplateView
+
 # Create your views here.
 
 #用于注册的form表单
@@ -35,7 +38,10 @@ class UserEditForm(forms.ModelForm):
         model = User
         fields = ('username',) 
 
-        
+class AboutView(TemplateView):
+    template_name = "about.html"
+    pass
+    
 # 首页        
 def index(request):
     # 读取cookie的值
@@ -54,7 +60,8 @@ def index(request):
         # return HttpResponse(e)
         return HttpResponseRedirect('/online/login/')
 
-
+        
+# 基于函数视图(fbv)
 def user_list(request):
     # 查询所有的用户
 
@@ -76,7 +83,25 @@ def user_list(request):
     return render_to_response('user_list.html', {"contacts": contacts})
     # return render(request,'user_list.html',{'user_list':user_list})
 
+ 
+# 基于类视图(cbv) 
+class UListView(ListView):
+
+    # model = User 等同于queryset = User.objects.all()
+    queryset = User.objects.order_by('-id')
     
+    context_object_name = "user_list" 
+    
+    # 添加额外的上下文数据分配到模板
+    def get_context_data(self,**kwargs):
+        context = super(UListView, self).get_context_data(**kwargs)
+        context['name_list'] = ['张三','李四','王麻子']
+        return context
+        
+    # 貌似必须放到最后面
+    template_name = 'online/user_list_class.html'
+ 
+ 
 # 修改
 def edit(request,user_id = None):
     try:

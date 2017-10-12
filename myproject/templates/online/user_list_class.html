@@ -1,0 +1,95 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="{% static 'css/common.css' %}">
+	<!--<link rel="stylesheet" href="/static/css/common.css'">-->
+	<title>Pending and Published tweets</title>
+	<style type="text/css">
+		tr.evenrow{
+			background:#FFFFFF;
+		}
+		tr.oddrow{
+			background:#DDDDDD
+		}
+	</style>
+</head>
+<center>
+<body>
+	{% include "head.html" %}
+	
+		<table>
+			<tr>
+				<td colspan=3 align=center><b>基于类视图的用户列表</b></td>
+			</tr>
+			<tr>
+				<td>id</td>
+				<td>用户名</td>
+				<td>密码</td>
+				<td>头像</td>
+				<td>操作</td>
+			</tr>
+			
+			{% for user in user_list %}
+			<tr class = "{%cycle 'oddrow' 'evenrow'%}">
+				<td>{{user.id}}</td>
+				<td>{{user.username}}</td>
+				<td>{{user.password}}</td>
+				<td>
+					{%if user.headImg %}
+						<img src="/media/{{user.headImg}}" width="50px" height="50px" />
+					{%else%}
+						<img src="/media/upload/default.jpg" width="50px" height="50px" />
+					{%endif%}
+				</td>
+				<td>
+					<a href="/online/edit/{{user.id}}">修改</a>&nbsp;&nbsp;&nbsp;
+					<a href="/online/del/{{user.id}}">删除</a>
+				</td>
+			</tr>
+			{%endfor%}
+		</table>
+		<hr />
+		
+		<table>
+			<tr>
+				<td colspan=3 align=center><b>额外的上下文数据</b></td>
+			</tr>
+			<tr>
+				<td>id</td>
+			</tr>
+			
+			{% for name in name_list %}
+			<tr class = "{%cycle 'oddrow' 'evenrow'%}">
+				<td>{{name}}</td>
+			</tr>
+			{%endfor%}
+		</table>
+<!--<div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+        {% endif %}
+ 
+        <span class="current">
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
+ 
+        {% if contacts.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>-->	
+	{% include "foot.html" %}
+</body>
+</center>
+</html>
