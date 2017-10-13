@@ -86,7 +86,8 @@ def user_list(request):
  
 # 基于类视图(cbv) 
 class UListView(ListView):
-
+    template_name = 'online/user_list_class.html'
+    
     # model = User 等同于queryset = User.objects.all()
     queryset = User.objects.order_by('-id')
     
@@ -97,10 +98,7 @@ class UListView(ListView):
         context = super(UListView, self).get_context_data(**kwargs)
         context['name_list'] = ['张三','李四','王麻子']
         return context
-        
-    # 貌似必须放到最后面
-    template_name = 'online/user_list_class.html'
- 
+
  
 # 修改
 def edit(request,user_id = None):
