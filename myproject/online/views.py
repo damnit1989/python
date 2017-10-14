@@ -97,6 +97,9 @@ class UListView(ListView):
     def get_context_data(self,**kwargs):
         context = super(UListView, self).get_context_data(**kwargs)
         context['name_list'] = ['张三','李四','王麻子']
+        
+        # 在js中调用
+        context['name_list_json'] = json.dumps(['张三','李四','王麻子'])
         return context
 
  

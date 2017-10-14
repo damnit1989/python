@@ -92,4 +92,11 @@
 	{% include "foot.html" %}
 </body>
 </center>
+	<script src="{% static 'js/jquery1.9.min.js' %}" type="text/javascript"></script>
+	<script>
+		var name_list = {{name_list_json|safe}}
+		console.info(name_list)
+		console.info(name_list[0])
+		alert('3333')
+	</script>
 </html>
