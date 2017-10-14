@@ -11,7 +11,7 @@ class BlockedIpMiddleware(MiddlewareMixin):
     def process_request(self,request):
         if request.method == 'POST':
             if request.POST['username'] == 'admin':
-                return http.HttpResponseForbidden(u'<h1>'+request.POST['username']+'  is con\'t login Forbidden</h1>')
+                return http.HttpResponseForbidden(u'<h1>测试中间件 '+request.POST['username']+'  is con\'t login Forbidden</h1>')
         
         # 获取客户端IP
         if request.META['REMOTE_ADDR']:
