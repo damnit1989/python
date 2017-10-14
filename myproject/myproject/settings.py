@@ -72,6 +72,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                # 自定义上下文渲染器
+                'myproject.context_processor.settings',
+                'myproject.context_processor.ip_address',
             ],
         },
     },

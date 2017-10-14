@@ -90,6 +90,13 @@
     </span>
 </div>-->	
 	{% include "foot.html" %}
+	
+	<!--上下文渲染器-->
+	<h2>DEBUG: {{ setting.DEBUG }}</h2>
+	<h2>DEBUG: {{ setting.WSGI_APPLICATION }}</h2>
+	<h2>ip: {{ ip_address }}</h2>
+	<h2>method: {{ request_method }}</h2>	
+	
 </body>
 </center>
 	<script src="{% static 'js/jquery1.9.min.js' %}" type="text/javascript"></script>
