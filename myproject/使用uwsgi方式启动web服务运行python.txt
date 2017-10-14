@@ -1,0 +1,11 @@
+以Ubuntu为例:
+
+
+1 安装 uwsgi
+	sudo pip install uwsgi --upgrade
+	
+	
+2 使用 uwsgi 运行项目
+	uwsgi --http :8001 --chdir /path/to/project  --wsgi-file /path/to/wsgi.py
+	
+	# uwsgi  --http :8000 --chdir /home/lmm/Documents/gitworkspace/python/myproject  --wsgi-file /home/lmm/Documents/gitworkspace/python/myproject/myproject/wsgi.py
