@@ -180,7 +180,7 @@ def login(request):
                 # return HttpResponseRedirect('/online/login/')
     else:
         uf = UserLoginForm()
-    return render(request,'login.html',{'form':uf})
+    return render(request,'log_in.html',{'form':uf})
     # return render_to_response('login.html',{'uf':uf},context_instance=RequestContext(request))
     
     

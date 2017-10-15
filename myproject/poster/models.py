@@ -40,4 +40,8 @@ class User(models.Model):
     headImg = models.FileField(verbose_name = '用户头像',upload_to = settings.UPLOAD_FILE,null = True)
     def __unicode__(self):
         return self.username
+        
+    def get_user(self,user_id):
+        user_info = self.objects.get(id = user_id)
+        return user_info
     

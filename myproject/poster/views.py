@@ -12,6 +12,7 @@ from django.http import HttpResponseRedirect
 from myproject import settings
 from .models import Tweet
 
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -23,6 +24,7 @@ class TweetForm(forms.ModelForm):
             'text':forms.Textarea(attrs = {'cols':50,'rows':3}),
         }
 
+@login_required(login_url='/accounts/login/')
 def post_tweet(request,tweet_id = None):
     tweet = None
     if tweet_id:

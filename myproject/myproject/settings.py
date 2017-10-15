@@ -154,3 +154,7 @@ STATICFILES_DIRS = (
 UPLOAD_FILE = './upload/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace("\\", "/")
 MEDIA_URL = '/media/'
+
+
+# 系统auth登录认证通过后跳转url
+LOGIN_REDIRECT_URL = "/"
