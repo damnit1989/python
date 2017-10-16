@@ -12,7 +12,8 @@ class BlockedIpMiddleware(MiddlewareMixin):
 
         # 测试系统自带的认证系统
         # 匹配如果不是后台登录,则验证用户是否登录，
-        if request.path != '/admin/' and request.path != '/admin/login/' and request.path != '/accounts/login/':
+        if request.path != '/admin/' and request.path != '/admin/login/' and request.path != '/accounts/login/' and request.path != '/online/api/':
+            print request.META['REMOTE_ADDR']
             if not request.user.is_authenticated():
                 return HttpResponseRedirect('/accounts/login/')
         if request.method == 'POST':

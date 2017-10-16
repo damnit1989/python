@@ -192,4 +192,11 @@ def logout(request):
     response.delete_cookie('username')
     # 删除session
     del request.session['username']
-    return response    
+    return response   
+
+
+# liudao/curl_python_api.php调该接口
+def api(request):
+    return_php_data = {'name':'lmm','age':'34','height':'124','info':'请求成功'}
+    data = json.dumps(return_php_data).encode('utf-8')    
+    return HttpResponse(data, content_type="application/json")    

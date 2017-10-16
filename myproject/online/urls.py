@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^edit/(?P<user_id>[0-9]+)/$',views.edit,name="edit"),
     url(r'^del/(?P<user_id>[0-9]+)/$',views.delete,name="del"),
     url(r'^regist/$',views.regist,name="regist_url"),
+    url(r'^api/$',views.api,name="api"),
     url(r'^login/$',views.login,name="login_url"),
     url(r'^logout/$',views.logout,name="logout_url"),
     # url(r'^upload/(?P<path>.*)', 'django.views.static.serve', {'document_root': '/home/lmm/Documents/gitworkspace/python/myproject/upload'}),     
