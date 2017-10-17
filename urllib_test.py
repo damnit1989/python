@@ -11,6 +11,10 @@ Python的urllib和urllib2模块都做与请求URL相关的操作,但他们提供
 import urllib, urllib2
 import json
 
+
+__author__ = 'lmm'
+
+
 # with urllib.urlopen('https://api.douban.com/v2/book/2129650') as f:
 
 url = 'https://api.douban.com/v2/book/2129650'
