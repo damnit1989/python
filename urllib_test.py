@@ -8,6 +8,8 @@ Python的urllib和urllib2模块都做与请求URL相关的操作,但他们提供
     urllib模块可以提供进行urlencode的方法，该方法用于GET查询字符串的生成，urllib2的不具有这样的功能。这就是urllib与urllib2经常在一起使用的原因
 '''
 
+
+
 import urllib, urllib2
 import json
 
