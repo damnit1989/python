@@ -1,8 +1,10 @@
 #!/usr/bin/python2
 # -*- coding: utf-8 -*-
-# BeautifulSoup
+# BeautifulSoup  爬虫练习
 
 from bs4 import BeautifulSoup
+
+
 html = """
 <html><head><title>The Dormouse's story</title></head>
 <body>
@@ -14,9 +16,14 @@ html = """
 and they lived at the bottom of a well.</p>
 <p class="story">...</p>
 """
-# soup = BeautifulSoup(html)
-soup = BeautifulSoup(html,'lxml')
 
+
+# soup = BeautifulSoup(html)
+soup = BeautifulSoup(html)
+
+print type(soup.head)
+print soup.head.get_text()
+print soup.head.string
 # a_list = soup.select('a')
 # for a in a_list:
     # print a.get_text()
@@ -62,13 +69,11 @@ if __name__ == '__main__':
     import urllib
     url_handle = urllib.urlopen('https://www.python.org/events/python-events/')
     html = url_handle.read()
-    soup = BeautifulSoup(html,'lxml')
+    soup = BeautifulSoup(html)
     lis = soup.select('ul[class="list-recent-events menu"] > li')
     for x in lis:
         print type(x)
         print '会议:',x.h3.get_text()
         print '时间:',x.p.time.get_text()
-        print '内容:',x.p.span.get_text()
-
-
+        print '内容',x.p.select('span[class="event-location"]')[0].get_text()
             
