@@ -2,9 +2,20 @@
 # -*- coding: utf-8 -*-
 # BeautifulSoup  爬虫练习
 
+# 安装BeautifulSoup
+# 方法一：easy_install beautifulsoup4
+# 方法二：pip install beautifulsoup4
+
+
+# Beautiful Soup支持Python标准库中的HTML解析器(html.parser),
+# 还支持一些第三方的解析器(lxml,html5lib等),如果我们不安装它,则 Python 会使用 Python默认的解析器,lxml 解析器更加强大,速度更快,推荐安装
+
+
+# 导入模块
 from bs4 import BeautifulSoup
+import urllib
 
-
+# 测试html
 html = """
 <html><head><title>The Dormouse's story</title></head>
 <body>
@@ -17,8 +28,7 @@ and they lived at the bottom of a well.</p>
 <p class="story">...</p>
 """
 
-
-# soup = BeautifulSoup(html)
+# soup = BeautifulSoup(html,'lxml)
 soup = BeautifulSoup(html)
 print soup.name
 print type(soup.head)
@@ -57,21 +67,17 @@ print type(soup.head.title.string)
 # print soup.a.string
 # if type(soup.a.string) == 'bs4.element.Comment':
     # print type(soup.a.string)
-    
 # for content in soup.p.contents:
     # print content
-
 # for child in soup.body.children:
     # print child
-
 # for child in soup.descendants:
     # print child
-    
 # for str in soup.stripped_strings :
     # print str
-if __name__ == '__main__':
-    # pass
-    import urllib
+
+# 小小的测试
+def test():
     url_handle = urllib.urlopen('https://www.python.org/events/python-events/')
     html = url_handle.read()
     soup = BeautifulSoup(html)
@@ -81,4 +87,9 @@ if __name__ == '__main__':
         print '会议:',x.h3.get_text()
         print '时间:',x.p.time.get_text()
         print '内容',x.p.select('span[class="event-location"]')[0].get_text()
+
+        
+if __name__ == '__main__':
+    test()
+
             
