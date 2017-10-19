@@ -20,10 +20,15 @@ and they lived at the bottom of a well.</p>
 
 # soup = BeautifulSoup(html)
 soup = BeautifulSoup(html)
-
+print soup.name
 print type(soup.head)
 print soup.head.get_text()
+print type(soup.head.get_text())
+print '----------------'
 print soup.head.string
+print type(soup.head.string)
+print soup.head.title.string
+print type(soup.head.title.string)
 # a_list = soup.select('a')
 # for a in a_list:
     # print a.get_text()
