@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # 简易爬取糗事百科的段子,图片地址,点赞数,评论数  
 
-
 '''BeautifulSoup 爬虫实例1'''
 
 
@@ -10,7 +9,6 @@ import urllib, urllib2
 from bs4 import BeautifulSoup
 import os
 #from lxml import etree
-
 
 
 # 写入文件
@@ -27,6 +25,7 @@ def get_img(url):
     # 判断目录是否存在,不存在则创建
     if not os.path.isdir(img_dir):
         os.mkdir(img_dir)
+        
     user_agent = 'User-Agent:Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'
     headers = {'User-Agent':user_agent}
     request = urllib2.Request('http:'+url,None,headers)
@@ -40,8 +39,8 @@ def get_img(url):
 
         
 # 简易爬取糗事百科的段子,图片地址,点赞数,评论数        
-def test():
-    page = 1
+def test(page):
+
     # url = "https://www.qiushibaike.com/text/page/"+str(page)
     url = "https://www.qiushibaike.com/imgrank/page/"+str(page)
     try:
@@ -69,22 +68,23 @@ def test():
             # data['评论：'] = x.select('div[class="stats"]')[0].select('span[class="stats-comments"]')[0].a.get_text().strip()
             # print data
             
-            print '内容：',x.select('div[class="content"]')[0].get_text().strip()
-            print '图片地址：',x.select('div[class="thumb"]')[0].a.img.get('src')
-            print '好笑：',x.select('div[class="stats"]')[0].select('span[class="stats-vote"]')[0].get_text().strip()
-            print '评论：',x.select('div[class="stats"]')[0].select('span[class="stats-comments"]')[0].a.get_text().strip()
+            content = x.select('div[class="content"]')[0].get_text().strip()
+            img_url = x.select('div[class="thumb"]')[0].a.img.get('src')
+            vote_num = x.select('div[class="stats"]')[0].select('span[class="stats-vote"]')[0].get_text().strip()
+            comment_num = x.select('div[class="stats"]')[0].select('span[class="stats-comments"]')[0].a.get_text().strip()
 
-            write_to_file(x.select('div[class="content"]')[0].get_text().strip()+'\n','qiushibaike.txt')
-            write_to_file(x.select('div[class="thumb"]')[0].a.img.get('src')+'\n\n','qiushibaike.txt')
-            get_img(x.select('div[class="thumb"]')[0].a.img.get('src'))
+            write_to_file(content+'\n','qiushibaike.txt')
+            write_to_file(img_url+'\n\n','qiushibaike.txt')
+            get_img(img_url)
             
     except urllib2.HTTPError, e:
         print e.reason        
     except urllib2.URLError, e:
         print e.reason
     else:
-        print 'ok'
+        print 'the page：'+str(page)+'is ok'
         
 
 if __name__ == '__main__':
-    test()
+    for page in range(1, 5):
+        test(page)
