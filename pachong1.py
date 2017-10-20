@@ -89,10 +89,20 @@ def test(page):
         
 
 if __name__ == '__main__':
+    threads = []
     for page in range(1, 5):
     
         # 启动多线程，每个线程分别抓取不同的页
-        threading.Thread(target=test, args=(page,)).start()
+        # threading.Thread(target=test, args=(page,)).start()
+        t = threading.Thread(target=test, args=(page,))
+        threads.append(t)
         
         # 单进程很慢,一页接着一页抓取
         # test(page)
+        
+    for i in threads:
+        i.start()
+ 
+    for i in threads:
+        i.join()
+    print 'All is Done'
