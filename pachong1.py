@@ -1,6 +1,6 @@
 #!/usr/bin/python2
 # -*- coding: utf-8 -*-
-# 简易爬取糗事百科的段子,图片地址,点赞数,评论数  
+# 简易多进程爬取糗事百科的段子,图片地址,点赞数,评论数  
 
 '''BeautifulSoup 爬虫实例1'''
 
@@ -8,6 +8,7 @@
 import urllib, urllib2
 from bs4 import BeautifulSoup
 import os
+import threading
 #from lxml import etree
 
 
@@ -40,7 +41,9 @@ def get_img(url):
         
 # 简易爬取糗事百科的段子,图片地址,点赞数,评论数        
 def test(page):
-
+    myname = threading.current_thread().name
+    print 'thread:',myname,'is start'
+    
     # url = "https://www.qiushibaike.com/text/page/"+str(page)
     url = "https://www.qiushibaike.com/imgrank/page/"+str(page)
     try:
@@ -87,4 +90,9 @@ def test(page):
 
 if __name__ == '__main__':
     for page in range(1, 5):
-        test(page)
+    
+        # 启动多线程，每个线程分别抓取不同的页
+        threading.Thread(target=test, args=(page,)).start()
+        
+        # 单进程很慢,一页接着一页抓取
+        # test(page)
