@@ -23,3 +23,8 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ('id','username','password','headImg')
     search_fields = ['username']
 admin.site.register(User,UserAdmin)
+
+class QsbkAdmin(admin.ModelAdmin):
+    list_display = ('id','content','pic_name','created_at')
+    
+admin.site.register(Qsbk,QsbkAdmin)

@@ -16,9 +16,11 @@ class BlockedIpMiddleware(MiddlewareMixin):
             print request.META['REMOTE_ADDR']
             if not request.user.is_authenticated():
                 return HttpResponseRedirect('/accounts/login/')
-        if request.method == 'POST':
-            if request.POST['username'] == 'admin':
-                pass
+        
+        # 导致后台无法添加内容
+        # if request.method == 'POST':
+            # if request.POST['username'] == 'admin':
+                # pass
                 # return http.HttpResponseForbidden(u'<h1>测试中间件 '+request.POST['username']+'  is con\'t login Forbidden</h1>')
         
         # 获取客户端IP

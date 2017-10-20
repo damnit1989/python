@@ -9,7 +9,7 @@ from django.template import RequestContext
 
 # django内置加密, 以及验证
 from django.contrib.auth.hashers import make_password, check_password
-from poster.models import User
+from poster.models import User, Qsbk
 import json
 
 # 分页
@@ -17,6 +17,13 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # 类视图
 from django.views.generic import ListView,DetailView,TemplateView
+
+
+# 导入爬虫的库开始
+import urllib, urllib2
+from bs4 import BeautifulSoup
+import os
+import threading
 
 # Create your views here.
 
@@ -200,3 +207,113 @@ def api(request):
     return_php_data = {'name':'lmm','age':'34','height':'124','info':'请求成功'}
     data = json.dumps(return_php_data).encode('utf-8')    
     return HttpResponse(data, content_type="application/json")    
+
+
+
+# ------------------------------------爬虫代码开始-------------------------------------    
+# 写入文件
+def write_to_file(content,filename):
+    with open(filename,'a') as f:
+        f.write(content.encode('utf-8'))
+
+        
+# 获取图片保存到本地 
+def get_img(url):
+    apath = os.path.join(os.path.abspath('..'),'media')
+    
+    img_dir = apath+'/qsbk'
+    
+    # 判断目录是否存在,不存在则创建
+    if not os.path.isdir(img_dir):
+        os.mkdir(img_dir)
+        
+    user_agent = 'User-Agent:Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'
+    headers = {'User-Agent':user_agent}
+    request = urllib2.Request('http:'+url,None,headers)
+    u_handle = urllib2.urlopen(request)
+    data = u_handle.read()
+    
+    # 截取url末尾的图片名称
+    img_name = os.path.basename(urllib.url2pathname(url))
+    with open(img_dir+'/'+img_name,'wb') as f:
+        f.write(data)
+
+        
+# 简易爬取糗事百科的段子,图片地址,点赞数,评论数        
+def test(page):
+    myname = threading.current_thread().name
+    print 'thread:',myname,'is start'
+    
+    # url = "https://www.qiushibaike.com/text/page/"+str(page)
+    url = "https://www.qiushibaike.com/imgrank/page/"+str(page)
+    try:
+        # 构造请求头部
+        user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
+        headers = {'User-Agent':user_agent}
+        request = urllib2.Request(url,None,headers)
+        
+        # 发送请求
+        u_handle = urllib2.urlopen(request)
+        
+        # 获取html内容
+        html_str = u_handle.read()
+        
+        #构造文档树
+        soup = BeautifulSoup(html_str)
+        
+        # 选择节点
+        divs = soup.select('div[id="content-left"] > div ')
+        for x in divs:
+
+            content = x.select('div[class="content"]')[0].get_text().strip()
+            img_url = x.select('div[class="thumb"]')[0].a.img.get('src')
+            vote_num = x.select('div[class="stats"]')[0].select('span[class="stats-vote"]')[0].get_text().strip()
+            comment_num = x.select('div[class="stats"]')[0].select('span[class="stats-comments"]')[0].a.get_text().strip()
+
+            # write_to_file(content+'\n','qiushibaike.txt')
+            # write_to_file(img_url+'\n\n','qiushibaike.txt')
+            pic_name = os.path.basename(urllib.url2pathname('http'+img_url))
+            Qsbk.objects.create(content = content,pic_name = pic_name,pic_url = img_url)
+            get_img(img_url)
+            
+    except urllib2.HTTPError, e:
+        print e.reason        
+    except urllib2.URLError, e:
+        print e.reason
+    else:
+        print 'the page：'+str(page)+'is ok'  
+
+def pachong(request):
+    threads = []
+    for page in range(1, 5):
+    
+        # 启动多线程，每个线程分别抓取不同的页
+        t = threading.Thread(target=test, args=(page,))
+        threads.append(t)
+        # 单进程很慢,一页接着一页抓取
+        # test(page)
+    for i in threads:
+        i.start()
+ 
+    for i in threads:
+        i.join()
+    print 'All is Done' 
+
+
+def qsbk_list(request):
+ 
+    contact_list = Qsbk.objects.all()
+    paginator = Paginator(contact_list, 3) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        contacts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        contacts = paginator.page(paginator.num_pages)  
+    # 返回信息        
+    return render_to_response('qsbk_list.html', {"contacts": contacts})    
+# ------------------------------------爬虫代码结束-------------------------------------    

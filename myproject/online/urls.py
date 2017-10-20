@@ -20,6 +20,8 @@ urlpatterns = [
     url(r'^api/$',views.api,name="api"),
     url(r'^login/$',views.login,name="login_url"),
     url(r'^logout/$',views.logout,name="logout_url"),
+    url(r'^pachong/$',views.pachong,name="pachong"),
+    url(r'^qsbk/$',views.qsbk_list,name="qsbk_list"),
     # url(r'^upload/(?P<path>.*)', 'django.views.static.serve', {'document_root': '/home/lmm/Documents/gitworkspace/python/myproject/upload'}),     
     
     # url(r'^thankyou/$',views.thankyou,name="thank_you"),

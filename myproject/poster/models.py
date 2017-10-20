@@ -44,4 +44,9 @@ class User(models.Model):
     def get_user(self,user_id):
         user_info = self.objects.get(id = user_id)
         return user_info
-    
+
+class Qsbk(models.Model):
+    content = models.TextField(verbose_name = '内容')
+    pic_name = models.CharField(verbose_name = '图片名称', max_length = 50)
+    pic_url = models.CharField(verbose_name = '图片名称', max_length = 300)
+    created_at = models.DateTimeField(verbose_name = '创建时间', auto_now_add = True)
