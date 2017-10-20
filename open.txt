@@ -1,7 +1,0 @@
-1.我正在测试
-2.我正在测试
-3.我正在测试
-4.我正在测试
-5.this is a test content to write to txt file
-6.this is a test content to write to txt file
-7.this is a test content to write to txt file
