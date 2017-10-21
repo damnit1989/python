@@ -302,8 +302,8 @@ def pachong(request):
 
 def qsbk_list(request):
  
-    contact_list = Qsbk.objects.all()
-    paginator = Paginator(contact_list, 3) # Show 25 contacts per page
+    contact_list = Qsbk.objects.all().order_by('-id')
+    paginator = Paginator(contact_list, 10) # Show 10 contacts per page
 
     page = request.GET.get('page')
     try:
