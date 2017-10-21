@@ -1,0 +1,30 @@
+
+tr.evenrow{
+	background:#FFFFFF;
+}
+tr.oddrow{
+	background:#DDDDDD
+}
+
+.head {
+	background: #ffd52b none repeat scroll 0 0;
+	height: 82px;
+	width: 100%;
+}
+.content-block {
+	margin: 0 auto;
+	width: 960px;
+}	
+
+.head .logo {
+	float: left;
+}
+
+.head .logo a {
+	background-image: url("/media/qsbk_logo.png");
+	background-position: 0 0;
+	display: block;
+	height: 79px;
+	text-indent: -999999px;
+	width: 207px;
+}
