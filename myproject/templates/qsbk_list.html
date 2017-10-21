@@ -12,55 +12,59 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="{% static 'css/common.css' %}">
-	<!--<link rel="stylesheet" href="/static/css/common.css'">-->
-	<title>Pending and Published tweets</title>
+	<link rel="stylesheet" href="/static/css/common.css'">-->
+	<link rel="stylesheet" href="{% static 'css/qsbk.css' %}">
+	<title>糗事百科</title>
 	<style type="text/css">
-		tr.evenrow{
-			background:#FFFFFF;
-		}
-		tr.oddrow{
-			background:#DDDDDD
-		}
+
 	</style>
 </head>
 <center>
 <body style="background-color:#F7F7F7">
-	{% include "head.html" %}
+	<!--{% include "head.html" %}-->
 	
+	<div id="header" class="head">
+		<div class="content-block">
+			<div class="logo" id="hd_logo">
+			<a href="/"></a>
+			</div>
+		</div>
+	</div>
+	<div style="background-color:#F7F7F7">&nbsp;</div>
+	
+	{% for user in contacts %}
+		<table style="background-color:#FFFFFF;padding:50px">			
+			<tr>
+				<td style="width:800px">段子{{forloop.counter}}：{{user.content}}</td>
+			</tr>
+			<tr><td>&nbsp;</td></tr>
+			<tr>
+				<td style="width:800px"><img src="/media/qsbk/{{user.pic_name}}" /></td>
+			</tr>
+		</table>
+		<div style="background-color:#F7F7F7">&nbsp;</div>
+	{%endfor%}
+		
+	<!-----------分页开始------------>
+	<div class="pagination">
+		<span class="step-links">
+			{% if contacts.has_previous %}
+				<a href="?page={{ contacts.previous_page_number }}">previous</a>
+			{% endif %}
+	 
+			<span class="current">
+				Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+			</span>
+	 
+			{% if contacts.has_next %}
+				<a href="?page={{ contacts.next_page_number }}">next</a>
+			{% endif %}
+		</span>
+	</div>
+	<!-----------分页结束------------>
+	<hr />
 
-
-			{% for user in contacts %}
-
-			<table style="background-color:#FFFFFF;padding:50px">			
-				<tr>
-					<td style="width:800px">段子{{forloop.counter}}：{{user.content}}</td>
-				</tr>
-				<tr><td>&nbsp;</td></tr>
-				<tr>
-					<td style="width:800px"><img src="/media/qsbk/{{user.pic_name}}" /></td>
-				</tr>
-
-						</table>
-				<div style="background-color:#F7F7F7">&nbsp;</div>
-			{%endfor%}
-
-		<hr />
-
-<div class="pagination">
-    <span class="step-links">
-        {% if contacts.has_previous %}
-            <a href="?page={{ contacts.previous_page_number }}">previous</a>
-        {% endif %}
- 
-        <span class="current">
-            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
-        </span>
- 
-        {% if contacts.has_next %}
-            <a href="?page={{ contacts.next_page_number }}">next</a>
-        {% endif %}
-    </span>
-</div>	
+	
 	{% include "foot.html" %}
 </body>
 </center>
