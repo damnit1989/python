@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 import time 
 try:
 
-    driver = webdriver.Firefox()
+    driver = webdriver.Chrome()
 
     driver.get('https://www.baidu.com')
     elem = driver.find_element_by_name("wd")
@@ -22,11 +22,15 @@ try:
     assert '很抱歉' not in  driver.page_source 
     driver.close()
 except AssertionError as e:
-    print dir(e)
-    print type(e)
-    print 'assert 1==2'
-except Exception,e:
-    print dir(e)
-    # print e.__init__
-    print e.message
+    pass
+    # print dir(e)
+    # print type(e)
+    # print e.msg
+    # print 'assert 1==2'
+except Exception as e:
+    print e
+    pass
+    # print dir(e)
+    # # print e.__init__
+    # print e.message
 
