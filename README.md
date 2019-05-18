@@ -1,5 +1,8 @@
-# about
-this repository is the python examples from learning 
+# 简介
+## 床前明月光  
+## 疑是地上霜  
+## 举头望明月  
+## 低头思故乡  
 # info
 ## first
 ## two
